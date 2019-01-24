@@ -1,12 +1,14 @@
-// let's go!
-
+// cookies for JWT that allows us to validate user.
+// local storage doesn't automatically send the JWT along
+const cookieParser = require('cookie-parser');
 require('dotenv').config({ path: 'variables.env' });
 const createServer = require('./createServer');
 const db = require('./db');
 
 const server = createServer();
 
-// TODO use express middleware to handle coockies (JWT)
+// middleware works in-between request and response
+server.express.use(cookieParser());
 // TODO use express middleware to populate current user
 
 server.start(
