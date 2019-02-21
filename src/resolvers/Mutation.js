@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const { randomBytes } = require('crypto');
 // takes callback based functions and turns them into promises
 const { promisify } = require('util');
+const { transport, makeEmail } = require('../mail');
 
 const Mutations = {
   async createItem(parent, args, ctx, info) {
@@ -99,17 +100,30 @@ const Mutations = {
     // 1. Check if this is a real user
     const user = await ctx.db.query.user({ where: { email: args.email } });
     if (!user) {
-      throw new Error(`No user found for ${args.email}`);
+      throw new Error(`No such user found for email ${args.email}`);
     }
     // 2. Set a reset token and expiry on that user
-    const resetToken = (await promisify(randomBytes)(20)).toString('hex');
-    const resetTokenExpiry = Date.now() + 2700000; // 45 min from now
+    const randomBytesPromiseified = promisify(randomBytes);
+    const resetToken = (await randomBytesPromiseified(20)).toString('hex');
+    const resetTokenExpiry = Date.now() + 3600000; // 1 hour from now
     const res = await ctx.db.mutation.updateUser({
       where: { email: args.email },
       data: { resetToken, resetTokenExpiry }
     });
+    // 3. Email them that reset token
+    const mailRes = await transport.sendMail({
+      from: 'wes@wesbos.com',
+      to: user.email,
+      subject: 'Your Password Reset Token',
+      html: makeEmail(`Your Password Reset Token is here!
+      \n\n
+      <a href="${
+        process.env.FRONTEND_URL
+      }/reset?resetToken=${resetToken}">Click Here to Reset</a>`)
+    });
+
+    // 4. Return message
     return { message: 'gracias' };
-    // 3. email them that reset token
   },
   async resetPassword(parent, args, ctx, info) {
     //1. check if the passwords match
@@ -121,7 +135,7 @@ const Mutations = {
     const [user] = await ctx.db.query.users({
       where: {
         resetToken: args.resetToken,
-        resetTokenExpiry_gte: Date.now() - 2700000
+        resetTokenExpiry_gte: Date.now() - 3600000
       }
     });
     if (!user) {
