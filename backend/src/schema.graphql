@@ -1,6 +1,9 @@
 # public facing API
 
 # import * from './generated/prisma.graphql'
+# defines capabilities of the API by specifying how a client fetches and updates data
+# Schema serves as contract between client and server
+# collection of GraphQL types with special root types (Query, Mutation, Subscription)
 
 type SuccessMessage {
   message: String
