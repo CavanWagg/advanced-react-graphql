@@ -9,6 +9,9 @@ const CURRENT_USER_QUERY = gql`
       email
       name
       permissions
+      orders {
+        id
+      }
       cart {
         id
         quantity
@@ -31,7 +34,7 @@ const User = props => (
 );
 
 User.propTypes = {
-  children: PropTypes.func.isRequired
+  children: PropTypes.func.isRequired,
 };
 
 export default User;
