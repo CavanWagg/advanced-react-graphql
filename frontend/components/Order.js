@@ -42,17 +42,13 @@ class Order extends React.Component {
           if (loading) return <p>Loading...</p>;
           const order = data.order;
           return (
-            <OrderStyles>
+            <OrderStyles data-test="order">
               <Head>
-                <title>Sick Fits - Order {order.id} </title>
+                <title>Sick Fits - Order {order.id}</title>
               </Head>
               <p>
-                <span>
-                  Order ID:
-                  </span>
-                <span>
-                  {this.props.id}
-                </span>
+                <span>Order ID:</span>
+                <span>{this.props.id}</span>
               </p>
               <p>
                 <span>Charge</span>
@@ -78,7 +74,7 @@ class Order extends React.Component {
                       <h2>{item.title}</h2>
                       <p>Qty: {item.quantity}</p>
                       <p>Each: {formatMoney(item.price)}</p>
-                      <p>Subtotal: {formatMoney(item.price * item.quantity)}</p>
+                      <p>SubTotal: {formatMoney(item.price * item.quantity)}</p>
                       <p>{item.description}</p>
                     </div>
                   </div>
@@ -93,3 +89,4 @@ class Order extends React.Component {
 }
 
 export default Order;
+export { SINGLE_ORDER_QUERY };
