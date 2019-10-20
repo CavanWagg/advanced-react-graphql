@@ -36,6 +36,7 @@ type CartItemConnection {
 }
 
 input CartItemCreateInput {
+  id: ID
   quantity: Int
   item: ItemCreateOneInput
   user: UserCreateOneWithoutCartInput!
@@ -47,6 +48,7 @@ input CartItemCreateManyWithoutUserInput {
 }
 
 input CartItemCreateWithoutUserInput {
+  id: ID
   quantity: Int
   item: ItemCreateOneInput
 }
@@ -218,6 +220,7 @@ type ItemConnection {
 }
 
 input ItemCreateInput {
+  id: ID
   title: String!
   description: String!
   image: String
@@ -473,6 +476,7 @@ type OrderConnection {
 }
 
 input OrderCreateInput {
+  id: ID
   items: OrderItemCreateManyInput
   total: Int!
   user: UserCreateOneInput!
@@ -502,6 +506,7 @@ type OrderItemConnection {
 }
 
 input OrderItemCreateInput {
+  id: ID
   title: String!
   description: String!
   image: String!
@@ -1003,6 +1008,7 @@ type UserConnection {
 }
 
 input UserCreateInput {
+  id: ID
   name: String!
   email: String!
   password: String!
@@ -1027,6 +1033,7 @@ input UserCreatepermissionsInput {
 }
 
 input UserCreateWithoutCartInput {
+  id: ID
   name: String!
   email: String!
   password: String!
