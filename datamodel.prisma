@@ -8,18 +8,18 @@ enum Permission {
 }
 
 type User {
-  id: ID! @unique
+  id: ID! @id
   name: String!
   email: String! @unique
   password: String!
   resetToken: String
   resetTokenExpiry: Float
-  permissions: [Permission]
-  cart: [CartItem!]!
+  permissions: [Permission] @scalarList(strategy: RELATION)
+  cart: [CartItem!]! @scalarList(strategy: RELATION)
 }
 
 type Item {
-  id: ID! @unique
+  id: ID! @id
   title: String!
   description: String!
   image: String
@@ -29,7 +29,7 @@ type Item {
 }
 
 type CartItem {
-  id: ID! @unique
+  id: ID! @id
   quantity: Int! @default(value: 1)
   # its possible to have a cartItem where the item has been deleted
   item: Item #relationship to Item
@@ -37,7 +37,7 @@ type CartItem {
 }
 
 type OrderItem {
-  id: ID! @unique
+  id: ID! @id
   title: String!
   description: String!
   image: String!
@@ -48,7 +48,7 @@ type OrderItem {
 }
 
 type Order {
-  id: ID! @unique
+  id: ID! @id
   items: [OrderItem!]!
   total: Int!
   user: User!
