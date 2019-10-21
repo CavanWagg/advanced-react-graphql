@@ -38,7 +38,7 @@ server.start(
   {
     cors: {
       credentials: true,
-      origin: ['https://sickfits-next-ckw.herokuapp.com/', process.env.FRONTEND_URL]
+      origin: ['https://sickfits-next-ckw.herokuapp.com', process.env.FRONTEND_URL]
     }
   },
   deets => {
