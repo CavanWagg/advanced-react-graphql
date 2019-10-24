@@ -1,5 +1,7 @@
 #endpoint: ${env:PRISMA_ENDPOINT}
-endpoint: https://sick-fits-prod-cw-46f6ae1d5e.herokuapp.com/sicks-fits-prod/prod
+#endpoint: https://sick-fits-prod-cw-46f6ae1d5e.herokuapp.com/sicks-fits-prod/prod
+#endpoint: https://sick-fits-prod-cw-46f6ae1d5e.herokuapp.com/ckw-prod/prod
+endpoint: https://sick-fits-prod-cw-46f6ae1d5e.herokuapp.com/ckw-prod/prod
 datamodel: datamodel.prisma
 secret: ${env:PRISMA_SECRET}
 
