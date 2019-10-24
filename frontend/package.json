@@ -47,6 +47,9 @@
     "jest": "^24.1.0",
     "jest-transform-graphql": "^2.1.0"
   },
+  "resolutions": {
+    "graphql": "^14.0.2"
+  },
   "jest": {
     "setupFilesAfterEnv": [
       "<rootDir>/jest.setup.js"
