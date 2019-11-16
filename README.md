@@ -1,6 +1,8 @@
 # advanced-react-graphql
 Full-stack online store application built with React, Apollo, Graphql, and Prisma. from Wes Bos' course
 
+![Screenshot](https://p92.f3.n0.cdn.getcloudapp.com/items/d5ubdlmw/Image+2019-11-16+at+3.07.33+PM.png?v=5d5866bb662775615351608d9ae03de1)
+
 ## An Online store built with React and GraphQl. Users can search, sell, add to cart and checkout their favorite items.
 
 The application has five main models - **Users, Items, Orders, CartItems, and OrderItems** showcasing the power of relational GraphQL Queries.
