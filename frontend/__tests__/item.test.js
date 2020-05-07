@@ -6,7 +6,7 @@ const fakeItem = {
   id: 'asdfjkl123',
   title: 'A cool Item',
   price: 10000,
-  description: 'Sickkkkkk',
+  description: 'Sickkkk!!!!',
   image: 'happy.jpg',
   largeImage: 'large.jpg',
 };
